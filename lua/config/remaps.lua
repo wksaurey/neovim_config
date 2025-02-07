@@ -30,10 +30,42 @@ vim.keymap.set('x', '<leader>p', '\"_dp')
 vim.keymap.set('n', '<leader>d', '\"_d')
 vim.keymap.set('v', '<leader>d', '\"_d')
 
--- use <leader>y to copy to system keyboard (doesn't work on wsl)
+-- use <leader>y to copy to system keyboard while on wsl
+if vim.fn.has('wsl') == 1 then
+    -- Suppress Neovim clipboard provider errors by overriding clipboard integration
+    vim.g.clipboard = {
+        name = "WSL Clipboard",
+        copy = {
+            ["+"] = function(text) vim.fn.system('clip.exe', text) end,
+            ["*"] = function(text) vim.fn.system('clip.exe', text) end,
+        },
+        paste = {
+            ["+"] = function() return vim.fn.systemlist('powershell.exe -command "Get-Clipboard"') end,
+            ["*"] = function() return vim.fn.systemlist('powershell.exe -command "Get-Clipboard"') end,
+        },
+        cache_enabled = 0,
+    }
+
+    -- yank
+    vim.api.nvim_set_keymap('n', '<leader>y', '\"+y', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('v', '<leader>y', '\"+y', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', '<leader>Y', '\"+Y', { noremap = true, silent = true })
+    -- paste
+    vim.api.nvim_set_keymap('n', '<leader>p', '\"+p', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('v', '<leader>p', '\"+p', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', '<leader>P', '\"+P', { noremap = true, silent = true })
+end
+
+
+-- backup
+-- yank
 -- vim.keymap.set('n', '<leader>y', '\"+y')
 -- vim.keymap.set('v', '<leader>y', '\"+y')
 -- vim.keymap.set('n', '<leader>Y', '\"+Y')
+-- paste
+-- vim.keymap.set('n', '<leader>p', '\"+p')
+-- vim.keymap.set('v', '<leader>p', '\"+p')
+-- vim.keymap.set('n', '<leader>P', '\"+P')
 
 -- removes 'Q' functionality (apparently it's bad?)
 vim.keymap.set('n', 'Q', '<nop>')
