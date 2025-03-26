@@ -6,7 +6,7 @@ return {
         require("nvim-surround").setup {
             keymaps = {
                 normal = '<leader>sa',
-                normal_cur = false,
+                normal_cur = '<leader>sas',
                 normal_line = false,
                 normal_cur_line = false,
                 visual = '<leader>s',
@@ -18,6 +18,7 @@ return {
                 ['s'] = ']', -- Index
                 ['p'] = ')', -- Parenthasis
                 ['c'] = '}', -- Curly Brackets
+                ['u'] = '__', -- Curly Brackets
             },
             move_cursor = false,
         }
