@@ -31,7 +31,7 @@ vim.keymap.set('n', '<leader>d', '\"_d')
 vim.keymap.set('v', '<leader>d', '\"_d')
 
 -- enable system clipboard integration with wsl
-if vim.fn.has('wsl') == 1 then
+if vim.fn.has('wsl') then
     vim.g.clipboard = {
         name = "WSL Clipboard",
         copy = {
@@ -51,7 +51,7 @@ vim.keymap.set('n', '<leader>Y', '\"+Y')
 vim.keymap.set('n', 'Q', '<nop>')
 
 -- replaces the current highlighted word throughout all of file
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 --sets current file as executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
