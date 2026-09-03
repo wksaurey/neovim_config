@@ -1,6 +1,5 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 
 -- Use Ctrl + [hjkl] to navigate between splits
 vim.keymap.set('n', '<C-k>', '<Cmd>wincmd k<CR>', { silent = true })

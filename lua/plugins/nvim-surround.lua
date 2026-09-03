@@ -1,19 +1,12 @@
 return {
     "kylechui/nvim-surround",
-    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function()
         require("nvim-surround").setup {
-            keymaps = {
-                normal = '<leader>sa',
-                normal_cur = '<leader>sas',
-                normal_line = false,
-                normal_cur_line = false,
-                visual = '<leader>s',
-                visual_line = '<leader>S',
-                delete = '<leader>sd',
-                change = '<leader>sr',
-            },
+            -- Using the plugin's default keymaps (ys / ds / cs / visual S).
+            -- The old <leader>s* set shared a prefix with leap's <leader>s, which
+            -- forced a 1s timeoutlen wait on every leap jump and let surround win
+            -- <leader>s and <leader>S in visual mode, so leap never fired there.
             aliases = {
                 ['s'] = ']', -- Index
                 ['p'] = ')', -- Parenthasis
