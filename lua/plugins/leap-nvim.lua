@@ -1,5 +1,7 @@
 return {
-    'ggandor/leap.nvim',
+    -- Upstream left GitHub on 2026-03-21 ("nuke it from orbit"); ggandor/leap.nvim
+    -- is now an empty README pointing here, so the GitHub spec installs no lua/.
+    url = 'https://codeberg.org/andyg/leap.nvim',
     dependencies = { 'tpope/vim-repeat' },
     config = function()
         local leap = require('leap')
