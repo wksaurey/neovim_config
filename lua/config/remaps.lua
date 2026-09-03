@@ -30,17 +30,9 @@ vim.keymap.set('x', '<leader>p', '\"_dp')
 vim.keymap.set('n', '<leader>d', '\"_d')
 vim.keymap.set('v', '<leader>d', '\"_d')
 
--- enable system clipboard integration with wsl
-if vim.fn.has('wsl') then
-    vim.g.clipboard = {
-        name = "WSL Clipboard",
-        copy = {
-            ["+"] = function(text) vim.fn.system('clip.exe', text) end,
-            ["*"] = function(text) vim.fn.system('clip.exe', text) end,
-        },
-        cache_enabled = 0,
-    }
-end
+-- system clipboard: let nvim autodetect the provider (finds win32yank.exe on WSL).
+-- The old hand-rolled vim.g.clipboard block was rejected wholesale by nvim
+-- ("clipboard: invalid g:clipboard") because it defined copy but no paste.
 
 -- use <leader>y to copy to system keyboard
 vim.keymap.set('n', '<leader>y', '\"+y')
