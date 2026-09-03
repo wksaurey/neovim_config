@@ -2,8 +2,9 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
-    dependencies = { 'nvim-lua/plenary.nvim', 'BurntSushi/ripgrep' },
+    -- NOTE: ripgrep is a system binary (/usr/bin/rg), not a nvim plugin --
+    -- listing it here made lazy clone 7.8MB of Rust source that nvim cannot use.
+    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'Telescope find files' })
