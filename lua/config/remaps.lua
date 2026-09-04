@@ -45,3 +45,10 @@ vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 --sets current file as executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- <leader>t flips capitalisation: the word under the cursor, or every word in
+-- the selection. Direction follows the region's first letter, so it round-trips.
+vim.keymap.set('n', '<leader>t', function() require('config.case').word() end,
+    { silent = true, desc = 'Toggle capital: word' })
+vim.keymap.set('x', '<leader>t', ':<C-u>lua require("config.case").selection()<CR>',
+    { silent = true, desc = 'Toggle capitals: selection' })
