@@ -32,10 +32,8 @@ return {
         vim.keymap.set('n', '<leader>l', function() safe_select(3) end)
         vim.keymap.set('n', '<leader>;', function() safe_select(4) end)
 
-        -- Slots 1-4 live on <leader>j/k/l/; above; deeper slots are reachable
-        -- through the quick menu (<leader>e), which is an editable buffer.
-        -- The old <leader>h1..h9 loop was removed because it made <leader>h a
-        -- prefix, forcing a 1s timeoutlen wait before the Alpha dashboard opened.
+        -- <leader>h1..h9 dropped: it made <leader>h a prefix and stalled the
+        -- Alpha dashboard 1s. Deeper slots go through the menu instead.
 
         -- Toggle previous & next buffers stored within Harpoon list
         vim.keymap.set('n', '<leader>n', function() harpoon:list():prev() end)

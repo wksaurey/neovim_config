@@ -3,10 +3,8 @@ return {
     event = "VeryLazy",
     config = function()
         require("nvim-surround").setup {
-            -- Using the plugin's default keymaps (ys / ds / cs / visual S).
-            -- The old <leader>s* set shared a prefix with leap's <leader>s, which
-            -- forced a 1s timeoutlen wait on every leap jump and let surround win
-            -- <leader>s and <leader>S in visual mode, so leap never fired there.
+            -- plugin defaults (ys/ds/cs/S). The old <leader>s* set shared a
+            -- prefix with leap's <leader>s and stalled every leap jump 1s.
             aliases = {
                 ['s'] = ']', -- Index
                 ['p'] = ')', -- Parenthasis

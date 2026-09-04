@@ -29,9 +29,8 @@ vim.keymap.set('x', '<leader>p', '\"_dp')
 vim.keymap.set('n', '<leader>d', '\"_d')
 vim.keymap.set('v', '<leader>d', '\"_d')
 
--- system clipboard: let nvim autodetect the provider (finds win32yank.exe on WSL).
--- The old hand-rolled vim.g.clipboard block was rejected wholesale by nvim
--- ("clipboard: invalid g:clipboard") because it defined copy but no paste.
+-- no vim.g.clipboard block on purpose: nvim rejects the table wholesale if it
+-- defines copy without paste, which killed both directions. Autodetect works.
 
 -- use <leader>y to copy to system keyboard
 vim.keymap.set('n', '<leader>y', '\"+y')
