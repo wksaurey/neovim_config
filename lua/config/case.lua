@@ -1,8 +1,8 @@
 local M = {}
 
--- A segment is a run of non-space, non-hyphen: "foo-bar" is two words, "baz's"
--- is one. Leading punctuation is skipped so "## heading" and "**bold**" reach
--- the letter rather than the marker.
+-- A segment is a run of non-space, non-hyphen, non-underscore: "foo-bar" and
+-- "foo_bar" are each two words, "baz's" is one. Leading punctuation is skipped
+-- so "## heading" and "**bold**" reach the letter rather than the marker.
 local function case_token(tok, upper)
     local i = tok:find('%a')
     if not i then
@@ -13,7 +13,7 @@ local function case_token(tok, upper)
 end
 
 local function case_words(s, upper)
-    return (s:gsub('[^%s-]+', function(tok)
+    return (s:gsub('[^%s_-]+', function(tok)
         return case_token(tok, upper)
     end))
 end
@@ -27,7 +27,7 @@ end
 function M.word()
     local row, col = unpack(vim.api.nvim_win_get_cursor(0))
     local line = vim.api.nvim_get_current_line()
-    for st, tok in line:gmatch('()([^%s-]+)') do
+    for st, tok in line:gmatch('()([^%s_-]+)') do
         if col + 1 >= st and col + 1 <= st + #tok - 1 then
             vim.api.nvim_set_current_line(
                 line:sub(1, st - 1) .. case_token(tok, wants_upper(tok)) .. line:sub(st + #tok))
