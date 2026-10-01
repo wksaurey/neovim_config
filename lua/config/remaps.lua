@@ -55,3 +55,15 @@ vim.keymap.set('n', '<leader>t', function() require('config.case').word() end,
     { silent = true, desc = 'Toggle capital: word' })
 vim.keymap.set('x', '<leader>t', ':<C-u>lua require("config.case").selection()<CR>',
     { silent = true, desc = 'Toggle capitals: selection' })
+
+-- LSP floats (hover, signature, diagnostic) are previews that never take focus,
+-- so nvim leaves them up until the cursor moves. <Esc> is a no-op in normal
+-- mode otherwise, so it costs nothing to make it the dismiss key.
+vim.keymap.set('n', '<Esc>', function()
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        local cfg = vim.api.nvim_win_get_config(win)
+        if cfg.relative ~= '' and cfg.focusable then
+            pcall(vim.api.nvim_win_close, win, false)
+        end
+    end
+end, { desc = 'Dismiss floating windows' })
