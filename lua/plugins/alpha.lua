@@ -26,13 +26,16 @@ return {
 			[[                                                                       ]],
         }
 
+        -- Font Awesome codepoints on purpose: Nerd Fonts v3 moved the Material
+        -- Design block, and Jomolhari squats the vacated PUA slots so the old
+        -- ones render as Tibetan glyphs instead of tofu
         dashboard.section.buttons.val = {
-            dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
+            dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
             dashboard.button("n", "  New file", ":ene <BAR> startinsert <CR>"),
-            dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
-            dashboard.button("s", "  Search text", ":Telescope live_grep <CR>"),
+            dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
+            dashboard.button("s", "  Search text", ":Telescope live_grep <CR>"),
             dashboard.button("c", "  Configuration", ":e ~/.config/nvim/lua/plugins/alpha.lua<CR>"),
-            dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+            dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
         }
 
         local function footer()
