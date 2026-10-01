@@ -17,8 +17,9 @@ return {
         local ensure = {
             'bash', 'c', 'c_sharp', 'cmake', 'cpp', 'devicetree', 'diff',
             'git_config', 'gitcommit', 'gitignore', 'html', 'htmldjango',
-            'java', 'javascript', 'json', 'lua', 'markdown', 'python',
-            'requirements', 'ssh_config', 'vim', 'vimdoc', 'xml', 'yaml',
+            'java', 'javascript', 'json', 'lua', 'markdown', 'markdown_inline',
+            'python', 'requirements', 'ssh_config', 'vim', 'vimdoc', 'xml',
+            'yaml',
         }
 
         local installed = ts.get_installed()
