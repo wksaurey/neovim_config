@@ -7,6 +7,9 @@ vim.keymap.set('n', '<C-j>', '<Cmd>wincmd j<CR>', { silent = true })
 vim.keymap.set('n', '<C-h>', '<Cmd>wincmd h<CR>', { silent = true })
 vim.keymap.set('n', '<C-l>', '<Cmd>wincmd l<CR>', { silent = true })
 
+-- <C-q> for visual block: ghostty binds ctrl+v to paste, so nvim never sees it
+vim.keymap.set('n', '<C-q>', '<C-v>')
+
 -- move highlighted lines togther
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
