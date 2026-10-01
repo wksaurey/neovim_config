@@ -11,6 +11,18 @@ return {
                 ['c'] = '}', -- Curly Brackets
                 ['u'] = '__', -- Curly Brackets
             },
+            surrounds = {
+                -- Nothing stock produces a ``` fence: the backtick surround
+                -- emits one character, so gS` gives a lone backtick line.
+                ['C'] = {
+                    add = function()
+                        local lang = require('nvim-surround.config').get_input('Language: ')
+                        return { { '```' .. (lang or '') }, { '```' } }
+                    end,
+                    find = '^```%S*\n.-\n```$',
+                    delete = '^(```%S*\n)().-(\n```)()$',
+                },
+            },
             move_cursor = false,
         }
     end
